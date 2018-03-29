@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="abeer/style.css">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+		<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+	</head>
+	<body ng-app='myApp' onload="myFunction()">
+	<div id="loader"></div>
+	<div style="display:none;" id="myDiv" class="animate-bottom">
+
+		<my-navv></my-navv>
+
+		<p style="color: red; font-size: 23px; font-weight: bold; margin-left: 30px; margin-top: 220px;"><%= error %></p>
+		<p style="color: red; font-size: 23px; font-weight: bold; margin-left: 30px;"><%= errorTwo %></p>
+
+		<form action="/signup" method="post" class="col-xl-6 col-lg-6 col-md-6">
+			<span class="fontt" style="font-size: 18px;">User name:</span><br>
+		  	<input type="text" name="userName" required autofocus pattern="[a-z0-9_-]{3,8}" title="1) User name must not contian spaces or symbols except - _.
+		  	2) Minimum length for user name is 3 and the maximum is 8" class="form-control" style="margin-bottom: 5px;">
+		    <br>
+		    <span class="fontt" style="font-size: 18px;">Email:</span><br>
+		  	<input type="email" name="email" required class="form-control" style="margin-bottom: 5px;">
+		    <br><br>
+		    <span class="fontt" style="font-size: 18px;">Password:</span><br>
+		  	<input type="password" name="password" required pattern="[a-z0-9]{8,}" title="1) Password must not contian spaces or symbols.
+		  	2) Minimum length for password is 8" class="form-control" style="margin-bottom: 5px;">
+		  	<br>
+		  	<span class="fontt" style="font-size: 18px;">Confirm Password:</span><br>
+		  	<input type="password" name="confirm" required class="form-control" style="margin-bottom: 5px;">
+		    <br>
+  			<button type="submit" style="margin-top: 5px;" class="btn btn-secondary"><span class="fontt"> Register </span></button>
+		</form>
+		
+		<!-- <p><%= 1+1 %></p> -->
+
+
+
+		<script src="abeer/controllers.js"></script>
+		<script src="abeer/navv-controller.js"></script>
+	</div>
+	</body>
+</html>

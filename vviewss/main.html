@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="abeer/style.css">
+
+<!-- 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script> -->
+
+	<!-- 	<meta charset="utf-8">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	  <!-- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
+	  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	  <!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
+	  	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+
+		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+		<!--  <meta charset="utf-8">
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+		  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+		
+	</head>
+	<body ng-app='myApp' onload="myFunction()">
+	<div id="loader"></div>
+	<div style="display:none;" id="myDiv" class="animate-bottom">
+		<my-navv></my-navv>
+	
+
+		
+		<div ng-controller='mc' id='angular'>
+			<div  ng-controller='changer' id='crl'>
+
+				<!-- <div class="container" id='sortContainer'>
+					<div class="row">
+						<span class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-8" style="border: 0.1px solid green;"></span>
+						<div class="col-md-2 col-lg-1 col-xl-1" id="sort">Sort by:</div>
+						<span class="col-md-3 col-lg-3 col-xl-3" id='boxSort' style="border: 0.1px solid green;">
+							<select onchange="angular.element(this).scope().changeArr('/apiSort?sortt=' , this.value)" id='select'>
+								<option></option>
+								<option value="title" style="font-size: 120%;">Title</option>
+								<option value="date" style="font-size: 120%;">Date</option>
+								<option value="views" style="font-size: 120%;">Views</option>
+							</select>
+						</span>
+					</div>
+				</div> -->
+				
+				
+
+			
+				<div class="container" id='searchAndItem'>
+					<div class="row flex-column-reverse flex-sm-column-reverse flex-md-column-reverse flex-lg-row flex-xl-row" id='searchAndItemRow'>
+						<!-- <div class="col-sm-1"></div> -->
+						
+				<!-- 		<div class="col-xl-1" id='space'></div> -->
+						<!-- <div class="col-sm-12 col-md-10 col-lg-8">
+							<div class="container-fluid"> -->
+						<div class="row col-lg-10 col-xl-10" id='ppt'>
+							<div ng-repeat='ppt in array' class="col-12 col-sm-6 col-md-4 col-lg-3 items" id='subPpt' 
+							ng-click='open(ppt)'> 
+								<div id="{{'img-'+$index.toString()}}" class="imgStyle" ng-mouseover='mouseOver($index)' ng-mouseleave='mouseLeave($index)'>
+									<img ng-src={{ppt.thumbnail}} style="width:99%;height:150px;border-radius:5px;">
+									
+											
+									<div id='oneItem'>
+										<h8 id='title' class="fontt" style="margin-bottom: 0px;letter-spacing: 0.5px; text-align: left;">{{ppt.title.slice(0,20)}}...</h8> <!-- .slice(0,20) -->
+
+										<div id='userName' class="fontt" style="margin-bottom: 0px;font-size: 13px; text-align: left;color: #8c8c8c;">By: {{ppt.user.userName}}</div>
+
+										<div class="fontt" style="margin-bottom: 0px; font-size: 13px; text-align: left; display: inline-block;color: #8c8c8c;">{{ ppt.veiws }} views</div>
+										
+										<div id='details' class="fontt" style="margin-top: 0px; margin-bottom: 0px; margin-left: 70px; text-align: left; display: inline-block; color: #8c8c8c;">{{(ppt.date).slice(0,10)}}</div>
+
+										
+											
+
+										<!-- <div style="margin-top: 0px;"
+										ng-init='avgRating(ppt.rating , $index)'>
+											<img id="{{'b-20'+$index.toString()}}" src='abeer/icons/star.png' 	width='20px' height='20px'>
+											<img id="{{'b-40'+$index.toString()}}" src='abeer/icons/star.png'width='20px' height='20px'>
+											<img id="{{'b-60'+$index.toString()}}" src='abeer/icons/star.png'width='20px' height='20px'>
+											<img id="{{'b-80'+$index.toString()}}" src='abeer/icons/star.png'width='20px' height='20px'>
+											<img id="{{'b-100'+$index.toString()}}" src='abeer/icons/star.png'width='20px' height='20px'>
+											<span>{{ppt.rating}}%</span>
+										</div> -->
+									</div>								
+								</div>
+									
+							</div>
+						</div>
+
+					<!-- 	style="background-color:#bfbfbf; border-radius:5px ; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);margin-bottom: 10px; margin-top:15px; height: 350px;" -->
+
+						<div class=" col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2" id='search' style="border-radius:2px;margin-bottom: 10px; margin-top:15px; height: 380px;">
+							<br>
+							<h4 style="color: #000000;text-align: center;">Search</h4>
+							<div style="color: #404040;font-size: 100%;margin-top: 15px;" class="fontt">Title:</div>
+							<input type="text" name='t' ng-model="phrase" id='titSearch' data-role="none" data-enhance="false" placeholder="Search text"><!-- {{title}} -->
+							<div style="color: #404040;font-size: 100%;margin-top: 15px;" class="fontt">Rating:</div>
+							<div data-role='rangeslider' data-mini="true" id='m'>
+								<input type="range" min='0' max= '100' value='0' name="day1"  id='f'>
+								<input type="range" min='0' max= '100' value='100' name="day2" id='s'>
+							</div>
+							<!-- {{minn}}
+							{{maxx}} -->						
+							<br>
+							<button ng-click='changeArr("/search" , "default")' style="margin-top: 5px;margin-left:25%;color: #404040;font-weight: bold;font-size: 80%;width:45%;height:35px;">SUBMIT</button>
+							
+
+						<!-- 	<div id="sort">Sort by:</div> -->
+							<div style="margin-top: 20px;">
+								<p id="sort">Sort by:</p>
+								<select onchange="angular.element(this).scope().changeArr('/apiSort?sortt=' , this.value)" id='select' data-role="none" data-enhance="false">
+									<option value="default"></option>
+									<option value="title" style="font-size: 120%;">Title</option>
+									<option value="date" style="font-size: 120%;">Date</option>
+									<option value="views" style="font-size: 120%;">Views</option>
+								</select>
+							</div>
+							
+						</div>
+					<!-- 		</div>
+						</div> -->
+					</div>
+				</div>
+
+				<div id='p-div'class="row" style="position:absolute; bottom:0;">
+					<div class='col-3 col-sm-4 col-md-5 col-lg-4 col-xl-4'></div>
+
+					<ul class="pagination col-6 col-sm-4 col-md-6 col-lg-6 col-xl-6">
+		    			<li id='first' class="page-item" ng-click='firstPage()' ng-show='showFirst' style="margin-right: 0px;"><a class="page-link" href="#" style="color: #737373;">First</a></li>
+		    			<li class="page-item" ng-repeat= 'n in pagesArray' ng-click='page(n)' style="margin-right: 0px;"><a class="page-link" href="#" style="color: #737373;">{{n}}</a></li>
+		    			<li id='last' class="page-item" ng-click= 'lastPage()' ng-show='showLast'><a class="page-link" href="#" style="color: #737373;">Last</a></li>
+	  				</ul>
+
+	  				<div class='col-3 col-sm-4 col-md-1 col-lg-2 col-xl-2'></div>
+	  			</div>
+				
+			
+				<!-- <div id='p-div'class="row">
+					<div class='col-2 col-sm-4 col-md-4 col-lg-5 col-xl-5'></div>
+					<div class='col-1 col-sm-1 col-md-1 col-lg-1 col-xl-2' ng-click='firstPage()' ng-show='showFirst' id='first'> First </div>
+
+					<div ng-repeat= 'n in pagesArray' ng-click='page(n)' id="{{'p-'+$index.toString()}}" class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-2 p" ng-mouseover='mouseOverPP($index)' ng-mouseleave='mouseLeavePP($index)'> {{n}} </div>
+
+					<div class='col-1 col-sm-1 col-md-1 col-lg-1 col-xl-2' ng-click= 'lastPage()' ng-show='showLast' id='last'> Last </div>
+					<div class='col-4 col-sm-2 col-md-2 col-lg-1 col-xl-1'></div>
+				</div> -->
+
+					
+			</div>
+		<!-- 	<span>{{1+1}} {{abeer}} , <%= 3+5 %></span> -->
+		</div>
+		
+		<script src="abeer/controllers.js"></script>
+		<!-- <script src="../general/controllers.js"></script> -->
+		<script src="abeer/changeArr-conroller.js"></script>
+		<script src="abeer/navv-controller.js"></script>
+	</div>
+<!-- 		<script src="abeer/controller-search.js"></script> -->
+
+
+	</body>
+</html>

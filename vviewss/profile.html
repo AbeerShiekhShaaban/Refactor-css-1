@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="abeer/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<!-- 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+
+</head>
+<body ng-app='myApp' ng-controller='prof' onload="myFunction()">
+<div id="loader"></div>
+<div style="display:none;" id="myDiv" class="animate-bottom">
+
+	<my-navv></my-navv>
+	
+	<div class="container-fluid" ng-controller='mc'>
+		<div class="row">
+
+			<div class='col-xl-2'>
+				<div style="margin-top: 170px; margin-bottom: 30px; margin-left: 10px; width: 115%;" class="btn-group-vertical">
+					<button id='imag' class="btn btn-secondary" ng-click='showHide("form")' data-role="none" data-enhance="false" style="font-weight: bold; font-size: 20px; letter-spacing: 1px;">Change image</button>
+					<button id='up' class="btn btn-secondary" ng-click='showHide("pptsUploaded")' data-role="none" data-enhance="false" style="font-weight: bold; font-size: 20px; letter-spacing: 1px;">Uploaded ppt</button>
+					<button id='lik' class="btn btn-secondary" ng-click='showHide("pptsLiked")' data-role="none" data-enhance="false" style="font-weight: bold; font-size: 20px; letter-spacing: 1px;">Liked ppt</button>
+					<button id='com' class="btn btn-secondary" ng-click='showHide("pptsCom")' data-role="none" data-enhance="false" style="font-weight: bold; font-size: 20px; letter-spacing: 1px;">Commented ppt</button>
+				</div>
+			</div>
+
+			<div class="col-xl-10" style="margin-top: 170px;">
+				<form id='form' method="post" enctype="multipart/form-data" action='/profile'  ng-show='showForm' style="margin-left: 40px;">
+					<span class="fontt" style="font-size: 22px;">Change your profile image:</span><br>
+					<input type="file" name="img" required accept="image/*" data-role="none" data-enhance="false" style="margin-top: 30px;">
+					<button type="submit" data-role="none" data-enhance="false" class="btn btn-secondary"> Upload </button>
+				<!-- 	<img src="abeer\uploaded\d4a6c35fa6efc94b295e830f599086c2"> -->
+				</form>
+				<!-- <div ng-bind-html='uploaded' style="margin-top: 50px;">ffffffff</div> -->
+
+				<div id='uploaded' ng-show='showUploaded' style="margin-left: 20px;">					
+					<div id='pptsUploaded' ng-repeat = 'pptU in pptsForUser.pptsUploaded' style='border: 2px solid #b3b3b3; margin-bottom: 10px;'>
+						<div style="display: inline-block; cursor: pointer;" ng-click='open(pptU)'>
+							<div class="fontt" style="font-size: 22px;"> {{pptU.title}} </div>
+							<div style="margin-bottom: 3px; margin-left: 3px;"><img id='userImage1' ng-src={{pptU.thumbnail}} width='150px' height="150px"></div>
+						</div>
+						
+
+						<div style="display: inline-block;">
+							<button ng-click='editYourPpt(pptU)' class="btn btn-secondary" > Edit </button>
+							<button ng-click='delYourPpt(pptU)' class="btn btn-secondary" > Delete </button>
+						</div>
+						
+					</div>
+				</div>
+
+				<div id='liked' style='margin-left: 20px;' ng-show='showLiked'>
+					<div id='pptsLiked' ng-repeat = 'ppt in pptsForUser.pptsLikes' style='border: 2px solid #b3b3b3; margin-bottom: 10px;cursor: pointer;' ng-click='open(ppt)'>
+						<div class="fontt" style="font-size: 22px;"> {{ppt.title}} </div>
+						<div style="margin-bottom: 3px; margin-left: 3px;"><img id='userImage2' ng-src={{ppt.thumbnail}} width='150px' height="150px"></div>
+					</div>
+				</div>
+
+				<div id='comminted' style='margin-left: 20px;' ng-show='showCommented'>
+					<div id='pptsCom' ng-repeat = 'pptC in pptsForUser.pptsComminted' style='border: 2px solid #b3b3b3; margin-bottom: 10px;cursor: pointer;' ng-click='open(pptC)'>
+						<div class="fontt" style="font-size: 22px;"> {{pptC.title}} </div>
+						<div style="margin-bottom: 3px; margin-left: 3px;"><img id='userImage3' ng-src={{pptC.thumbnail}} width='150px' height="150px"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+	<script src="abeer/controllers.js"></script>
+	<script src="abeer/controller-profile.js"></script>
+	<script src="abeer/navv-controller.js"></script>
+</div>
+</body>
+</html>

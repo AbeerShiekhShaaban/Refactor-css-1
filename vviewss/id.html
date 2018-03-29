@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="abeer/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body ng-app='myApp' onload="myFunction()">
+<div id="loader"></div>
+<div style="display:none;" id="myDiv" class="animate-bottom">
+
+	<my-navv></my-navv>
+
+	<div id='div1' ng-controller='first' class="container" style="max-width: 97%">
+		<div class="row">
+			<div class="col-xl-7 col-lg-12 col-md-12" style="height: 570px;"><iframe id='ff' width='100%' height='100%' frameborder='0'>This is an embedded <a target='_blank' href='https://office.com'>Microsoft Office</a> presentation, powered by <a target='_blank' href='https://office.com/webapps'>Office Online</a>.</iframe>
+			</div>
+
+			<div class="col-xl-5" style="border: 3px solid #d9d9d9; border-radius:2px; background-color: #e6e6ff;">
+				<h1 style="margin-bottom: 50px; margin-top: 1px;"> {{pptx.title}} </h1>
+				
+				<img src={{pptx.user.image}} width="40px" height="40px" style="border-radius: 50%;">
+				<span class="font">{{pptx.user.userName}}</span>
+
+				<hr>
+				
+				<div style="margin-top: 20px;"> <span style="font-weight: 600; font-size: 19px;" class="font">Date:</span> {{(pptx.date).slice(0,10)}}</div>
+
+				<hr>
+				
+				<div style="margin-top: 20px;"> {{pptx.veiws}} <span>veiws</span> </div>
+				<hr>
+
+				<div id='lik' style="margin-top: 20px;"><img ng-click='like()' ng-src={{imgSrc}} width= "25px" height="25px">  <span>{{pptx.likes}}</span> <span id='msg' style="display: none;"> You can't like sign in </span> </div>	
+				<hr>			
+				<div style="margin-top: 20px;">
+					<div style="font-weight: 600; font-size: 19px;" class="font">Average Rating:</div>
+					<img id='b-20' src='abeer/icons/star.png'>
+					<img id='b-40' src='abeer/icons/star.png'>
+					<img id='b-60' src='abeer/icons/star.png'>
+					<img id='b-80' src='abeer/icons/star.png'>
+					<img id='b-100' src='abeer/icons/star.png'>
+					<span>{{pptx.rating}}%</span>
+				</div>
+				<hr>
+				<p style="margin-top: 20px;"> <span class='font'>Description:</span><br> {{pptx.description}} </p>
+			</div>
+		</div>
+		<div id="yourRating" style="margin-top: 20px; cursor: pointer;">
+			<img id='a-20' src='abeer/icons/star.png' ng-click='rate(20)'>
+			<img id='a-40' src='abeer/icons/star.png' ng-click='rate(40)'>
+			<img id='a-60' src='abeer/icons/star.png' ng-click='rate(60)'>
+			<img id='a-80' src='abeer/icons/star.png' ng-click='rate(80)'>
+			<img id='a-100' src='abeer/icons/star.png' ng-click='rate(100)'>
+		</div>
+		<div id='v'>Your Rating is: <span id='ans'>{{yourCurrentRate}}%</span>  </div>
+		
+	</div>
+
+	<div id="coms" ng-controller='comments'>
+
+		<div id="addCom" class="ng-hide">
+			<textarea id='addComInp' rows="3" cols="90" placeholder='Add comment' ng-model='cont' data-role="none" data-enhance="false" class="col-xl-6 col-lg-6 col-md-8 col-sm-8 col-4" style="border: 2px solid #4747d1"></textarea>
+			<button id='bttn' ng-click='addCom()' data-role="none" data-enhance="false" style="position: relative; 
+			bottom: 30px; font-weight: bold;" class="btn btn-primary">Add Comment</button>
+		</div>
+
+		<div id='comment' ng-repeat='com in commentArr' ng-init="outer=$index" style="position: relative;" ng-style="evenOddBackground($odd)"> <!--  | orderBy:"outer":true -->
+			<div id='userName' style="font-weight: bold;"><img src={{com.user.image}} width="40px" height="40px" style="border-radius: 50%; margin-right: 5px;">{{com.user.userName}}</div>
+			<p id="{{'content-'+outer.toString()}}" class='col-xl-9 col-lg-9 col-md-9 col-sm-10 col-8 content'>{{com.content}}</p>
+
+			<div style="display: inline-block; position: absolute; top: 35px;"><img src="abeer/icons/Edit.png" id="{{'editIcon-'+outer.toString()}}" width='15' height='15' ng-click='showEditDelete(outer)' class='ng-hide' style="display: inline-block; cursor: pointer;
+			"></div>
+			<div id="{{'ed-'+outer.toString()}}"  class='ng-hide' style="display: inline-block; background-color: #666666;position: absolute; top: 40px; padding: 8px; color: white; font-weight: normal; z-index: 1;">
+				<span ng-click='showEdit(outer)' style="display: block; cursor: pointer; margin-bottom: 5px; ">Edit</span>
+				<span ng-click='del(outer)' style="display: block; cursor: pointer; margin-bottom: 5px;">Delete</span>
+				<span ng-click='ccancel(outer)' style="display: block; cursor: pointer; margin-bottom: 5px;">Cancel</span>
+			</div>
+			<div id="{{'edit-'+outer.toString()}}"  class='ng-hide'>
+				<textarea id="{{'inp-'+outer.toString()}}" rows="3" cols="90" type="text" ng-model='update' class="col-xl-6 col-lg-7 col-md-7 col-sm-6 col-4" style="border: 2px solid #4747d1;resize: none; border-radius: 10px;"></textarea>
+				<button ng-click='saveUpdate(outer)' style="background-color: #0066ff; border-radius: 3px; color: white;cursor: pointer; position: absolute; top: 60px;">Save</button><!-- <p>{{update}}</p> -->
+			</div>
+
+			<!-- 
+			 -->
+
+			<div>
+				<div id="{{'replyBtn-'+outer.toString()}}" ng-click='replyToggle(outer)' class="ng-hide" class="roundedBttn"> 
+				<!-- <span class="roundedBttn"> --> Reply <!-- </span> --> </div>
+				<textarea id="{{'replyWrite-'+outer.toString()}}" rows="2" cols="25" placeholder='Add reply' class='ng-hide' style="border: 2px solid #4747d1;resize: none; border-radius: 10px; display: inline; position: absolute; bottom: 25px;"></textarea>
+				<button id="{{'addBttn-'+outer.toString()}}" ng-click='addRep(outer)' class='ng-hide' style="margin-left: 235px; background-color: #0066ff; color: white; font-weight: bold; font-size: 13px; padding: 5px; border: none; border-radius: 15px; cursor: pointer;"> Add Reply </button>
+				
+				<div id="{{'ViewReps-'+outer.toString()}}" ng-click='displayReps(outer)' class='roundedBttn2'> View all replies </div> <!-- give it unique id  to be able to change innerhtml-->
+
+				<div id="{{'reps-'+outer.toString()}}" class="ng-hide" style="margin-top: 10px;">
+					<div id='r' ng-repeat='reply in thisComRepArr(outer)' style=" position: relative;">  <!-- | orderBy:"$index":true -->
+
+
+						<div id="{{'editRep-'+$index.toString()+outer.toString()}}" class="ng-hide">
+							<button ng-click='showEditRep(outer , $index)' class="btn btn-primary" style="padding: 0px;">Edit</button>
+							<button ng-click='delRep(outer , $index)' class="btn btn-primary" style="padding: 0px; padding-right: 10px; padding-left: 10px;">Delete</button>
+							<button ng-click='ccancelRep(outer , $index)' class="btn btn-primary" style="padding: 0px;">Cancel</button>
+						</div>
+
+						<div style="font-weight: bold;"> <img src={{reply.user.image}} width="25px" height="25px" style="border-radius: 50%"> {{reply.user.userName}} </div>
+						<div style="display: inline-block;" id="{{'repCont-'+$index.toString()+outer.toString()}}" class="col-xl-8 content" ng-style="evenOddBackgroundRep($odd)"> {{reply.content}} </div> <!--  -->
+						<div style="position: absolute; top: 20px; display: inline-block;"><img src="abeer/icons/Edit.png" id="{{'editIconRep-'+$index.toString()+outer.toString()}}" width='10' height='10' ng-click='showEditDeleteRep(outer,$index)' style="cursor: pointer;"></div> <!-- class="ng-hide" -->
+
+						<div id="{{'updateRep-'+$index.toString()+outer.toString()}}" class="ng-hide" style="position: relative;">
+							<textarea id="{{'inpRep-'+$index.toString()+outer.toString()}}" type="text" style="border: 2px solid #4747d1;resize: none; border-radius: 4px;"></textarea>
+							<button ng-click='saveUpdateRep(outer , $index)' style="background-color: #0066ff; border-radius: 3px; color: white;cursor: pointer; position: absolute; bottom: 15px;">Save</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			
+			
+
+
+<!-- 			<input ng-model='repl'>
+			<button id='bttnrep' ng-click=''>Reply</button> -->
+		</div>	
+	</div>
+	
+<!-- 	<script src='../general/showppt.js'></script> -->
+<!-- 	<script src='abeer/ejs.js'></script> -->
+	<script src="abeer/controllers.js"></script>
+	<script src="abeer/navv-controller.js"></script>
+	<script src='abeer/showppt.js'></script>
+	<script src="abeer/comment.js"></script>
+</div>
+	
+</body>
+</html>

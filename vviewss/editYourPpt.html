@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="abeer/style.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body ng-app='myApp' ng-controller='editPpt' onload="myFunction()">
+<div id="loader"></div>
+<div style="display:none;" id="myDiv" class="animate-bottom">
+
+	<my-navv></my-navv>
+
+	<form method="post" enctype="multipart/form-data" action="{{postUpdate}}" class="col-xl-9 col-lg-9 col-md-9" style="margin-top: 220px;">  <!--  action="{{postUpdate}}" -->
+		<label class="fontt" style="font-size: 18px;">Title</label><br>
+		<input type="text" name='tit' ng-model='title' class="form-control" style="margin-bottom: 30px;">
+
+		<label class="fontt" style="font-size: 18px;">Description</label>
+		<textarea type="text" name='desc' ng-model='description' class="form-control" style="margin-bottom: 30px; resize: none;"></textarea>
+
+		<label class="fontt" style="font-size: 18px;">Thumbnail</label>
+		<input type="file" name="imgg" accept="image/*" class="form-control" style="margin-bottom: 30px;">
+
+		<input type="radio" name="pp" value="false" ng-model='privacy'><span class="fontt"> Public </span> <br>
+		<input type="radio" name="pp" value="true" ng-model='privacy'><span class="fontt"> Private </span> <br>
+
+		<button type="submit" style="margin-top: 15px;" class="btn btn-secondary"><span class="fontt"> Save changes </span></button>
+	</form>
+
+
+
+	<script src="abeer/controllers.js"></script>
+	<script src="abeer/editYourPptConrl.js"></script>
+	<script src="abeer/navv-controller.js"></script>
+</div>
+
+</body>
+</html>

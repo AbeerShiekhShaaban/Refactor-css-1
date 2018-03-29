@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="abeer/style.css">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+		<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
+
+
+	</head>
+
+	<body onload="myFunction()">
+	<div id="loader"></div>
+	<div style="display:none;" id="myDiv" class="animate-bottom"> 
+
+		<div ng-app='myApp'>
+			<my-navv></my-navv>
+		</div>
+
+
+		<!-- <div class="col-xl-3"></div> -->
+
+
+		<form method="post" enctype="multipart/form-data" style="margin-top: 220px;" class="col-xl-9 col-lg-9 col-md-9">  <!--  action='/upload' -->
+			<span class="fontt" style="font-size: 18px;">Title:</span><br>
+		  	<input type="text" name="title" required class="form-control" style="margin-bottom: 5px;">
+		    <br>
+		    <span class="fontt" style="font-size: 18px;">Description:</span><br>
+		  	<input type="text" name="description" class="form-control" style="margin-bottom: 5px;">
+		    <br>
+		    <span class="fontt" style="font-size: 18px;">Thumbnail:</span><br>
+		  	<input type="file" name="myFile" required accept="image/*" class="form-control" style="margin-bottom: 5px;">
+		  	<br>
+		    <span class="fontt" style="font-size: 18px;">Embed:</span><br>
+		  	<textarea type="text" name="embed" required class="form-control" style="margin-bottom: 5px;resize: none;"></textarea> <span style="color:red ; font-weight:bold;"><%= err %></span>
+		    <br>
+  			<button type="submit" style="margin-top: 5px;" class="btn btn-secondary"><span class="fontt"> Upload </span></button>
+		</form>
+
+	<!-- 	<div class="col-xl-3"></div> -->
+
+
+		<script src="abeer/controllers.js"></script>
+		<script src="abeer/navv-controller.js"></script>
+	</div>
+	</body>
+</html>

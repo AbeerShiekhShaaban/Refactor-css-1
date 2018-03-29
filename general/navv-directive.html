@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-sm fixed-top navbar-custom py-6 py-sm-8 py-md-8 py-lg-6 py-xl-12" ng-controller='navv'>
+	<a class="navbar-brand" href="#"  ng-click="go('/')"><img id='yourPoint' ng-src={{classStyleYourppt}} ng-mouseleave='mouseLeaveNav()' ng-mouseover='mouseOverNav("Yourppt")' width="225px" height="30px"></a>
+	<ul class="navbar-nav ml-auto">
+		<li class="nav-item" ng-show="!show">
+			<a id='signin' class="nav-link cla" ng-mouseleave='mouseLeaveNav()' ng-mouseover='mouseOverNav("Signin")' ng-style='classStyleSignin' href="#" ng-click="go('/log')"><img ng-src={{signinImg}} width="25px" height="25px"> Sign In</a>
+		</li>
+		<li class="nav-item" ng-show="!show">
+			<a id='signup' class="nav-link cla" ng-mouseleave='mouseLeaveNav()' ng-mouseover='mouseOverNav("Signup")' ng-style='classStyleSignup' href="#" ng-click="go('/signup')"><img ng-src={{signupImg}} width="25px" height="25px">Sign Up</a>
+		</li>
+		<li class="nav-item" ng-show="show" style="margin-top: 5px;">
+			<a id='logout' class="nav-link cla" ng-mouseleave='mouseLeaveNav()' ng-mouseover='mouseOverNav("Logout")' ng-style='classStyleLogout' href="#" ng-click="go('/logout')"><img ng-src={{logoutImg}} width="25px" height="25px" style="margin-right: 3px;">Log Out</a>
+		</li>
+		<li class="nav-item" ng-show="show" style="margin-top: 5px;">
+			<a id='uploadd'class="nav-link cla" ng-mouseleave='mouseLeaveNav()' ng-mouseover='mouseOverNav("Upload")' ng-style='classStyleUpload' href="#" ng-click="go('/upload')"><img ng-src={{uploadImg}} width="25px" height="25px">Upload</a>
+		</li>
+		<li class="nav-item" ng-show="show" style="margin-top: -11px;" ng-mouseleave='mouseLeaveNav()' ng-mouseover='mouseOverNav("Profile")'>
+			<a class="nav-link" href="#" ng-click="go(userId)">
+				<img id='prof' ng-src={{userImg}} width="35px" height="35px"  ng-style='classStyleProfile' style="margin-left: 13px;">
+				<div style="font-size: 13px;" ng-style='userNamee'>{{userName}}</div>
+				<!-- <div style="font-size: 11px; font-weight: normal;">{{userName}}</div> -->
+			</a>
+		</li>
+	</ul>
+</nav>
